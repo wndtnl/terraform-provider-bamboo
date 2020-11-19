@@ -1,0 +1,30 @@
+.DS_Store
+
+# IntelliJ
+**/.idea/workspace.xml
+**/.idea/usage.statistics.xml
+**/.idea/tasks.xml
+**/.idea/modules.xml
+**/.idea/shelf/
+**/.idea/sonarlint/
+**/.idea/dictionaries/
+**/.idea/libraries/
+
+*.iml
+*.iws
+*.log
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+terraform-provider-bamboo
+
+# Test binaries
+*.test
+
+# Profiling output
+*.out
