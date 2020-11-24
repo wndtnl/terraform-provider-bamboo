@@ -1,14 +1,7 @@
 .DS_Store
 
 # IntelliJ
-**/.idea/workspace.xml
-**/.idea/usage.statistics.xml
-**/.idea/tasks.xml
-**/.idea/modules.xml
-**/.idea/shelf/
-**/.idea/sonarlint/
-**/.idea/dictionaries/
-**/.idea/libraries/
+.idea/
 
 *.iml
 *.iws
@@ -21,7 +14,13 @@
 *.so
 *.dylib
 
+bin/
+
 terraform-provider-bamboo
+.terraform/
+crash.log
+*.tfstate
+*.tfstate.backup
 
 # Test binaries
 *.test
