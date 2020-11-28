@@ -15,7 +15,7 @@ func resourceGlobalVariable() *schema.Resource {
 		UpdateContext: resourceGlobalVariableUpdate,
 		DeleteContext: resourceGlobalVariableDelete,
 		Importer: &schema.ResourceImporter{
-			StateContext: schema.ImportStatePassthroughContext,
+			StateContext: resourceGlobalVariableImportState,
 		},
 		Schema: map[string]*schema.Schema{
 			"key": {
@@ -42,7 +42,7 @@ func resourceGlobalVariableCreate(ctx context.Context, data *schema.ResourceData
 		return diag.FromErr(err)
 	}
 
-	data.SetId(strconv.FormatInt(variable.Id, 10))
+	data.SetId(strconv.Itoa(variable.Id))
 
 	return resourceGlobalVariableRead(ctx, data, meta)
 }
@@ -54,7 +54,7 @@ func resourceGlobalVariableRead(ctx context.Context, data *schema.ResourceData, 
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.ParseInt(id, 10, 64)
+	variableId, err := strconv.Atoi(id)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -80,7 +80,7 @@ func resourceGlobalVariableUpdate(ctx context.Context, data *schema.ResourceData
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.ParseInt(id, 10, 64)
+	variableId, err := strconv.Atoi(id)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -104,7 +104,7 @@ func resourceGlobalVariableDelete(ctx context.Context, data *schema.ResourceData
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.ParseInt(id, 10, 64)
+	variableId, err := strconv.Atoi(id)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -117,4 +117,31 @@ func resourceGlobalVariableDelete(ctx context.Context, data *schema.ResourceData
 	data.SetId("")
 
 	return diags
+}
+
+func resourceGlobalVariableImportState(
+	ctx context.Context, data *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {
+
+	key := data.Id()
+
+	client := meta.(*bamboo.Client)
+
+	variable, err := client.GlobalVariable.Search(key)
+	if err != nil {
+		return nil, err
+	}
+
+	err = data.Set("key", variable.Key)
+	if err != nil {
+		return nil, err
+	}
+
+	err = data.Set("value", variable.Value)
+	if err != nil {
+		return nil, err
+	}
+
+	data.SetId(strconv.Itoa(variable.Id))
+
+	return schema.ImportStatePassthroughContext(ctx, data, meta)
 }
