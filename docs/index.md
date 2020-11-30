@@ -18,7 +18,7 @@ Any questions or remarks can be directed to [hello@windtunnel.io](mailto:hello@w
 terraform {
   required_version = ">=0.13"
   required_providers {
-    artifactory = {
+    bamboo = {
       source  = "registry.terraform.io/wndtnl/bamboo"
       version = "0.0.1"
     }
@@ -51,8 +51,8 @@ through the environment variables `BAMBOO_USER` and `BAMBOO_PASS`.
 Usage:
 
 ```hcl
-# Configure the Artifactory provider
-provider "artifactory" {
+# Configure the Bamboo provider
+provider "bamboo" {
   address = "http://localhost:6990/bamboo"
   username = "admin"
   password = "admin"
