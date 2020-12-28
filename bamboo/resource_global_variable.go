@@ -72,6 +72,7 @@ func resourceGlobalVariableRead(ctx context.Context, data *schema.ResourceData, 
 		return diag.FromErr(err)
 	}
 
+
 	return diags
 }
 

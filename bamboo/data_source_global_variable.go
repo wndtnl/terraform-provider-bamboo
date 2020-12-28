@@ -5,7 +5,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	bamboo "github.com/wndtnl/go-bamboo/pkg"
-	"github.com/wndtnl/go-bamboo/pkg/services"
 	"strconv"
 	"time"
 )
@@ -61,7 +60,7 @@ func dataSourceGlobalVariablesRead(ctx context.Context, data *schema.ResourceDat
 	return diags
 }
 
-func mapGlobalVariables(variables []*services.GlobalVariable) []interface{} {
+func mapGlobalVariables(variables []*bamboo.GlobalVariable) []interface{} {
 	if variables != nil {
 		vs := make([]interface{}, len(variables), len(variables))
 		for i, variable := range variables {
@@ -72,7 +71,7 @@ func mapGlobalVariables(variables []*services.GlobalVariable) []interface{} {
 	return make([]interface{}, 0)
 }
 
-func mapGlobalVariable(variable services.GlobalVariable) interface{} {
+func mapGlobalVariable(variable bamboo.GlobalVariable) interface{} {
 	v := make(map[string]interface{})
 	v["id"] = variable.Id
 	v["key"] = variable.Key

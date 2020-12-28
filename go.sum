@@ -263,6 +263,8 @@ github.com/wndtnl/go-bamboo v0.0.0-20201124092007-bc16ad68dae0 h1:nYluwKCTkYBjJQ
 github.com/wndtnl/go-bamboo v0.0.0-20201124092007-bc16ad68dae0/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
 github.com/wndtnl/go-bamboo v0.0.0-20201128092604-be6068ef7f31 h1:tL0vRyw6KvgVIglAokwWouCi8tNUe4snLFGhs4a38yo=
 github.com/wndtnl/go-bamboo v0.0.0-20201128092604-be6068ef7f31/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
+github.com/wndtnl/go-bamboo v0.0.0-20201228114351-f8e31873dfe1 h1:480aH3S1sOZEoTWikW1kqfRR8BMcsezqU1LyGZJkuVk=
+github.com/wndtnl/go-bamboo v0.0.0-20201228114351-f8e31873dfe1/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
 github.com/xanzy/ssh-agent v0.2.1 h1:TCbipTQL2JiiCprBWx9frJ2eJlCYT00NmctrHxVAr70=
 github.com/xanzy/ssh-agent v0.2.1/go.mod h1:mLlQY/MoOhWBj+gOGMQkOeiEvkx+8pJSI+0Bx9h2kr4=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
