@@ -29,6 +29,7 @@ func Provider() *schema.Provider {
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"bamboo_global_variable":   resourceGlobalVariable(),
+			"bamboo_group":             resourceGroup(),
 			"bamboo_local_agent":       resourceLocalAgent(),
 			"bamboo_shared_credential": resourceSharedCredential(),
 		},

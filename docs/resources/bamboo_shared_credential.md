@@ -4,8 +4,6 @@ Provides a Bamboo shared credential. This can be used to create and manage Bambo
 
 ## Example Usage
 
-Password:
-
 ```hcl
 # Create a new Bamboo PASSWORD shared credential
 resource "bamboo_shared_credential" "cred_password" {
