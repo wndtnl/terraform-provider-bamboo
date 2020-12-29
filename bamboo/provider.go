@@ -23,14 +23,16 @@ func Provider() *schema.Provider {
 			"password": {
 				Type:        schema.TypeString,
 				Optional:    true,
+				Sensitive:   true,
 				DefaultFunc: schema.EnvDefaultFunc("BAMBOO_PASS", bamboo.DefaultPassword),
 			},
 		},
-		ResourcesMap:         map[string]*schema.Resource{
-			"bamboo_global_variable": resourceGlobalVariable(),
+		ResourcesMap: map[string]*schema.Resource{
+			"bamboo_global_variable":   resourceGlobalVariable(),
+			"bamboo_local_agent":       resourceLocalAgent(),
+			"bamboo_shared_credential": resourceSharedCredential(),
 		},
-		DataSourcesMap:       map[string]*schema.Resource{
-			"bamboo_global_variables": dataSourceGlobalVariables(),
+		DataSourcesMap: map[string]*schema.Resource{
 		},
 		ConfigureContextFunc: providerConfigure,
 	}

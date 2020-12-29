@@ -9,18 +9,16 @@ terraform {
 
 provider "bamboo" {}
 
-data "bamboo_global_variables" "variables" {}
-
 resource "bamboo_global_variable" "nexus_user" {
-  key = "NexusUser"
-  value = "nexus-user"
+  key = "NexusUser2"
+  value = "nexus-user2"
 }
 
-resource "bamboo_global_variable" "database" {
-  key = "Database"
-  value = "Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;"
+resource "bamboo_global_variable" "database_password" {
+  key = "DatabasePassword"
+  value = "sUp3rSecr3t!"
 }
 
-output "variables" {
-  value = data.bamboo_global_variables.variables.global_variables
+output "db_password_id" {
+  value = bamboo_global_variable.database_password.id
 }

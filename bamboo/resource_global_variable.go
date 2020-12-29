@@ -5,7 +5,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	bamboo "github.com/wndtnl/go-bamboo/pkg"
-	"strconv"
 )
 
 func resourceGlobalVariable() *schema.Resource {
@@ -18,6 +17,10 @@ func resourceGlobalVariable() *schema.Resource {
 			StateContext: resourceGlobalVariableImportState,
 		},
 		Schema: map[string]*schema.Schema{
+			"id": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"key": {
 				Type:     schema.TypeString,
 				Required: true,
@@ -30,19 +33,44 @@ func resourceGlobalVariable() *schema.Resource {
 	}
 }
 
+func unmarshalGlobalVariable(s *schema.ResourceData) *bamboo.GlobalVariable {
+
+	v := new(bamboo.GlobalVariable)
+
+	v.Id = s.Get("id").(string)
+	v.Key = s.Get("key").(string)
+	v.Value = s.Get("value").(string)
+
+	return v
+}
+
+func marshalGlobalVariable(s *schema.ResourceData, v *bamboo.GlobalVariable) error {
+
+	if err := s.Set("id", v.Id); err != nil {
+		return err
+	}
+	if err := s.Set("key", v.Key); err != nil {
+		return err
+	}
+	if err := s.Set("value", v.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func resourceGlobalVariableCreate(ctx context.Context, data *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	client := meta.(*bamboo.Client)
 
-	key := data.Get("key").(string)
-	value := data.Get("value").(string)
+	variable := unmarshalGlobalVariable(data)
 
-	variable, err := client.GlobalVariable.Create(key, value)
+	newVariable, err := client.GlobalVariable.Create(variable)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	data.SetId(strconv.Itoa(variable.Id))
+	data.SetId(newVariable.Id)
 
 	return resourceGlobalVariableRead(ctx, data, meta)
 }
@@ -54,24 +82,14 @@ func resourceGlobalVariableRead(ctx context.Context, data *schema.ResourceData, 
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.Atoi(id)
+	variable, err := client.GlobalVariable.GetOne(id)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	variable, err := client.GlobalVariable.GetOne(variableId)
-	if err != nil {
+	if err = marshalGlobalVariable(data, variable); err != nil {
 		return diag.FromErr(err)
 	}
-
-	if err := data.Set("key", variable.Key); err != nil {
-		return diag.FromErr(err)
-	}
-
-	if err := data.Set("value", variable.Value); err != nil {
-		return diag.FromErr(err)
-	}
-
 
 	return diags
 }
@@ -81,18 +99,11 @@ func resourceGlobalVariableUpdate(ctx context.Context, data *schema.ResourceData
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.Atoi(id)
+	variable := unmarshalGlobalVariable(data)
+
+	err := client.GlobalVariable.Update(id, variable)
 	if err != nil {
 		return diag.FromErr(err)
-	}
-
-	if data.HasChange("key") || data.HasChange("value") {
-
-		err = client.GlobalVariable.Update(
-			variableId, data.Get("key").(string), data.Get("value").(string))
-		if err != nil {
-			return diag.FromErr(err)
-		}
 	}
 
 	return resourceGlobalVariableRead(ctx, data, meta)
@@ -105,12 +116,8 @@ func resourceGlobalVariableDelete(ctx context.Context, data *schema.ResourceData
 	client := meta.(*bamboo.Client)
 
 	id := data.Id()
-	variableId, err := strconv.Atoi(id)
-	if err != nil {
-		return diag.FromErr(err)
-	}
 
-	err = client.GlobalVariable.Delete(variableId)
+	err := client.GlobalVariable.Delete(id)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -132,17 +139,11 @@ func resourceGlobalVariableImportState(
 		return nil, err
 	}
 
-	err = data.Set("key", variable.Key)
-	if err != nil {
+	if err = marshalGlobalVariable(data, variable); err != nil {
 		return nil, err
 	}
 
-	err = data.Set("value", variable.Value)
-	if err != nil {
-		return nil, err
-	}
-
-	data.SetId(strconv.Itoa(variable.Id))
+	data.SetId(variable.Id)
 
 	return schema.ImportStatePassthroughContext(ctx, data, meta)
 }

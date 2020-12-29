@@ -25,6 +25,7 @@ func TestAccBambooGlobalVariable(t *testing.T) {
 				// Create
 				Config: testAccGlobalVariableConfig(key, value1),
 				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet(rn, "id"),
 					resource.TestCheckResourceAttr(rn, "key", key),
 					resource.TestCheckResourceAttr(rn, "value", value1),
 				),
@@ -33,6 +34,7 @@ func TestAccBambooGlobalVariable(t *testing.T) {
 				// Update
 				Config: testAccGlobalVariableConfig(key, value2),
 				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet(rn, "id"),
 					resource.TestCheckResourceAttr(rn, "key", key),
 					resource.TestCheckResourceAttr(rn, "value", value2),
 				),

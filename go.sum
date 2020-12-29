@@ -265,6 +265,14 @@ github.com/wndtnl/go-bamboo v0.0.0-20201128092604-be6068ef7f31 h1:tL0vRyw6KvgVIg
 github.com/wndtnl/go-bamboo v0.0.0-20201128092604-be6068ef7f31/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
 github.com/wndtnl/go-bamboo v0.0.0-20201228114351-f8e31873dfe1 h1:480aH3S1sOZEoTWikW1kqfRR8BMcsezqU1LyGZJkuVk=
 github.com/wndtnl/go-bamboo v0.0.0-20201228114351-f8e31873dfe1/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
+github.com/wndtnl/go-bamboo v0.0.0-20201229101243-d059c2a95320 h1:RMJZYwIGDGGFNu6BW63ooet9G5rN9d6sBAODK3tLrmM=
+github.com/wndtnl/go-bamboo v0.0.0-20201229101243-d059c2a95320/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
+github.com/wndtnl/go-bamboo v0.0.0-20201229130124-b02bc38c95a9 h1:HMvqH4wH2H9TVDdsxcly/9m5hhT6D3KKq5kh+bYeuGo=
+github.com/wndtnl/go-bamboo v0.0.0-20201229130124-b02bc38c95a9/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
+github.com/wndtnl/go-bamboo v0.0.0-20201229153609-ad27b913367a h1:wAy4JI/3keFThqpVoKX0ISsaRltXWZSxnSyenvzgtH4=
+github.com/wndtnl/go-bamboo v0.0.0-20201229153609-ad27b913367a/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
+github.com/wndtnl/go-bamboo v0.0.0-20201229153922-966de71cd5fa h1:U+SkVLpJZOBDWuCwbIpJbNSLnknRkBZoMJUu/Z0Frk0=
+github.com/wndtnl/go-bamboo v0.0.0-20201229153922-966de71cd5fa/go.mod h1:U7rwPP1gETKehjPaiT4dZMkDQ/WRZvlqf1FX2PwMdzw=
 github.com/xanzy/ssh-agent v0.2.1 h1:TCbipTQL2JiiCprBWx9frJ2eJlCYT00NmctrHxVAr70=
 github.com/xanzy/ssh-agent v0.2.1/go.mod h1:mLlQY/MoOhWBj+gOGMQkOeiEvkx+8pJSI+0Bx9h2kr4=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
