@@ -5,9 +5,11 @@ import (
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	bamboo "github.com/wndtnl/go-bamboo/pkg"
+	"net/http"
 )
 
-func ExpandStringSlice(input []interface{}) *[]string {
+func expandStringSlice(input []interface{}) *[]string {
 	result := make([]string, 0)
 	for _, item := range input {
 		if item != nil {
@@ -19,7 +21,7 @@ func ExpandStringSlice(input []interface{}) *[]string {
 	return &result
 }
 
-func FlattenStringSlice(input *[]string) []interface{} {
+func flattenStringSlice(input *[]string) []interface{} {
 	result := make([]interface{}, 0)
 	if input != nil {
 		for _, item := range *input {
@@ -53,4 +55,22 @@ func validateV1(fn schema.SchemaValidateFunc) schema.SchemaValidateDiagFunc {
 		}
 		return diags
 	}
+}
+
+func ignoreNotFoundDiag(err error, data *schema.ResourceData) diag.Diagnostics {
+	r := ignoreNotFound(err, data)
+	if r != nil {
+		return diag.FromErr(r)
+	}
+	return nil
+}
+
+func ignoreNotFound(err error, data *schema.ResourceData) error {
+	if aErr, ok := err.(bamboo.Error); ok {
+		if aErr.Status() == http.StatusNotFound {
+			data.SetId("")
+			return nil
+		}
+	}
+	return err
 }

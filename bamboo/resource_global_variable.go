@@ -84,7 +84,7 @@ func resourceGlobalVariableRead(ctx context.Context, data *schema.ResourceData, 
 	id := data.Id()
 	variable, err := client.GlobalVariable.GetOne(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	if err = marshalGlobalVariable(data, variable); err != nil {
@@ -119,7 +119,7 @@ func resourceGlobalVariableDelete(ctx context.Context, data *schema.ResourceData
 
 	err := client.GlobalVariable.Delete(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	data.SetId("")

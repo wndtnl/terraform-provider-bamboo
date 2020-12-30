@@ -40,7 +40,7 @@ func unmarshalGroup(s *schema.ResourceData) *bamboo.Group {
 
 	g.Name = s.Get("name").(string)
 	rawMembers := s.Get("members").(*schema.Set).List()
-	g.Members = *ExpandStringSlice(rawMembers)
+	g.Members = *expandStringSlice(rawMembers)
 
 	return g
 }
@@ -51,7 +51,7 @@ func marshalGroup(s *schema.ResourceData, g *bamboo.Group) error {
 		return err
 	}
 
-	memberSet := schema.NewSet(schema.HashString, FlattenStringSlice(&g.Members))
+	memberSet := schema.NewSet(schema.HashString, flattenStringSlice(&g.Members))
 	if err := s.Set("members", memberSet); err != nil {
 		return err
 	}
@@ -84,7 +84,7 @@ func resourceGroupRead(ctx context.Context, data *schema.ResourceData, meta inte
 	name := data.Id()
 	group, err := client.Group.GetOne(name)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	if err = marshalGroup(data, group); err != nil {
@@ -119,7 +119,7 @@ func resourceGroupDelete(ctx context.Context, data *schema.ResourceData, meta in
 
 	err := client.Group.Delete(name)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	data.SetId("")

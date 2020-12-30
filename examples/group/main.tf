@@ -10,7 +10,7 @@ terraform {
 provider "bamboo" {}
 
 resource "bamboo_group" "grp_devops" {
-  name = "devops"
+  name = "devops2"
   members = [
     "admin"
   ]

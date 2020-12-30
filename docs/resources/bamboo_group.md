@@ -18,7 +18,7 @@ resource "bamboo_group" "grp_devops" {
 
 The following arguments are supported:
 
-* `name` - (Required) Name for the group, needs to be unique.
+* `name` - (Required) Name for the group, needs to be unique. Changing this forces a new resource to be created.
 * `members` - (Optional) A list of group members referenced by username. An error is returned when the provided username does not match an existing user.
 
 ## Import

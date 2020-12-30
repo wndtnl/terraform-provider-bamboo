@@ -1,11 +1,11 @@
 # Bamboo Provider
 
 This [Bamboo](https://www.atlassian.com/software/bamboo) provider can be used to interact with Bamboo resources
-as exposed by the [Terraform Provider for Bamboo](https://windtunnel.io) add-on. It is important to understand that:
+as exposed by the [Terraform Provider for Bamboo](https://windtunnel.io/products/tpb) add-on. It is important to understand that:
 
 - This provider has not been created nor is it maintained by [Atlassian](https://www.atlassian.com) but by [WindTunnel Technologies](https://windtunnel.io),
 an independent Marketplace vendor.
-- This provider allows managing Bamboo resources which are not exposed through the [official Bamboo API](https://docs.atlassian.com/atlassian-bamboo/REST/7.2.0/)
+- This provider allows managing Bamboo resources which are not exposed through the [official Bamboo API](https://docs.atlassian.com/atlassian-bamboo/REST/latest/)
 which makes the installation of the accompanying [Marketplace add-on](https://marketplace.atlassian.com) in the Bamboo server a mandatory prerequisite.
 
 -> Please refer to the [add-on documentation](https://windtunnel.io/products/tpb) for additional installation and getting started instructions.

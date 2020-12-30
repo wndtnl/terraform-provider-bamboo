@@ -172,7 +172,7 @@ func resourceSharedCredentialRead(ctx context.Context, data *schema.ResourceData
 	id := data.Id()
 	sharedCredential, err := client.SharedCredential.GetOne(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	if err = marshalSharedCredentials(data, sharedCredential); err != nil {
@@ -207,7 +207,7 @@ func resourceSharedCredentialDelete(ctx context.Context, data *schema.ResourceDa
 
 	err := client.SharedCredential.Delete(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	data.SetId("")

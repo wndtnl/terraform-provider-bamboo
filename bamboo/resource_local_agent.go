@@ -97,7 +97,7 @@ func resourceLocalAgentRead(ctx context.Context, data *schema.ResourceData, meta
 	id := data.Id()
 	localAgent, err := client.LocalAgent.GetOne(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	if err = marshalLocalAgent(data, localAgent); err != nil {
@@ -132,7 +132,7 @@ func resourceLocalAgentDelete(ctx context.Context, data *schema.ResourceData, me
 
 	err := client.LocalAgent.Delete(id)
 	if err != nil {
-		return diag.FromErr(err)
+		return ignoreNotFoundDiag(err, data)
 	}
 
 	data.SetId("")
