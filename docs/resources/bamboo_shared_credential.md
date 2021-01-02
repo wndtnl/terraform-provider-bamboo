@@ -39,7 +39,7 @@ The following arguments are supported:
 * `username` - (Optional) This must be specified when `type` is set to `PASSWORD`.
 * `password` - (Optional) This must be specified when `type` is set to `PASSWORD`.
 * `ssh_key` - (Optional) This must be specified when `type` is set to `SSH`.
-* `ssh_passphrase` - (Optional) This must be specified when `type` is set to `SSH`.
+* `ssh_passphrase` - (Optional) This can be specified when `type` is set to `SSH`.
 * `access_key` - (Optional) This must be specified when `type` is set to `AWS`.
 * `secret_key` - (Optional) This must be specified when `type` is set to `AWS`.
 

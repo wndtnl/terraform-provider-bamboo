@@ -163,7 +163,7 @@ func resourceSharedCredentialCreate(ctx context.Context, data *schema.ResourceDa
 	return resourceSharedCredentialRead(ctx, data, meta)
 }
 
-func resourceSharedCredentialRead(ctx context.Context, data *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSharedCredentialRead(_ context.Context, data *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	var diags diag.Diagnostics
 
@@ -197,7 +197,7 @@ func resourceSharedCredentialUpdate(ctx context.Context, data *schema.ResourceDa
 	return resourceSharedCredentialRead(ctx, data, meta)
 }
 
-func resourceSharedCredentialDelete(ctx context.Context, data *schema.ResourceData, meta interface{}) diag.Diagnostics {
+func resourceSharedCredentialDelete(_ context.Context, data *schema.ResourceData, meta interface{}) diag.Diagnostics {
 
 	var diags diag.Diagnostics
 

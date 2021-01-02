@@ -32,6 +32,7 @@ func Provider() *schema.Provider {
 			"bamboo_global_permission":  resourceGlobalPermission(),
 			"bamboo_global_variable":    resourceGlobalVariable(),
 			"bamboo_group":              resourceGroup(),
+			"bamboo_linked_repository":  resourceLinkedRepository(),
 			"bamboo_local_agent":        resourceLocalAgent(),
 			"bamboo_project":            resourceProject(),
 			"bamboo_shared_credential":  resourceSharedCredential(),
