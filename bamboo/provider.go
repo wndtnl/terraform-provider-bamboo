@@ -37,6 +37,7 @@ func Provider() *schema.Provider {
 			"bamboo_local_agent":                  resourceLocalAgent(),
 			"bamboo_project":                      resourceProject(),
 			"bamboo_shared_credential":            resourceSharedCredential(),
+			"bamboo_user":                         resourceUser(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 		},

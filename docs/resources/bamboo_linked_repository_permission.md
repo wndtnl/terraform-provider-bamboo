@@ -1,6 +1,6 @@
 # Bamboo Linked Repository Permission
 
-Provides a Bamboo linked repository permission for a user or group. This can be used to create and manage Bamboo repository permissions.
+Provides a Bamboo linked repository permission for a user or group. This can be used to create and manage Bamboo linked repository permissions.
 
 ## Example Usage
 
