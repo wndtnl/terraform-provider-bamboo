@@ -50,5 +50,5 @@ At least a single permission is required. Not all permission combinations are va
 Global permissions can be imported using the format "<type>|<name>", e.g.
 
 ```
-$ terraform import bamboo_global_permission.gp_devops "GROUP|devops"
+$ terraform import bamboo_global_permission.gp_devops "GROUP|grp_devops"
 ```

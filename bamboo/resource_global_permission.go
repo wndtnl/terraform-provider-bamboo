@@ -105,8 +105,8 @@ func resourceGlobalPermissionRead(ctx context.Context, data *schema.ResourceData
 
 	client := meta.(*bamboo.Client)
 
-	name := data.Get("name").(string)
 	permissionType := data.Get("type").(string)
+	name := data.Get("name").(string)
 
 	globalPermission, err := client.GlobalPermission.GetOne(permissionType, name)
 	if err != nil {
@@ -140,8 +140,8 @@ func resourceGlobalPermissionDelete(ctx context.Context, data *schema.ResourceDa
 
 	client := meta.(*bamboo.Client)
 
-	name := data.Get("name").(string)
 	permissionType := data.Get("type").(string)
+	name := data.Get("name").(string)
 
 	err := client.GlobalPermission.Delete(permissionType, name)
 	if err != nil {
@@ -179,15 +179,6 @@ func resourceGlobalPermissionImportState(
 }
 
 func getGlobalPermissionId(g *bamboo.GlobalPermission) string {
-
-	if g.Type == "" {
-		panic("empty type")
-	}
-
-	if g.Name == "" {
-		panic("empty name")
-	}
-
 	// Combination of Type and Name uniquely define the permission
 	return fmt.Sprintf("%s|%s", g.Type, g.Name)
 }

@@ -41,11 +41,19 @@ The following arguments are supported:
 * `shared_credential_id` - (Optional) This must be specified when `auth_type` is set to `PASSWORD_SHARED` or `SSH_SHARED`.
 * `shallow_clones` - (Optional) Use shallow clones. Defaults to `false` if not specified.
 * `remote_agent_cache` - (Optional) Enable repository caching on remote agents. Defaults to `true` if not specified.
+
+> A bug currently exists in Bamboo which prevents adjusting the default value of the remote agent cache option at
+> creation time. This might result in an unexpected state diff when using this option.
+
 * `submodules` - (Optional) Use submodules. Defaults to `false` if not specified.
 * `verbose_logs` - (Optional) Verbose logs. Defaults to `false` if not specified.
 * `fetch_whole_repository` - (Optional) Fetch whole repository. Defaults to `false` if not specified.
 * `lfs` - (Optional) Enable LFS support. Defaults to `false` if not specified.
 * `command_timeout` - (Optional) Command timeout in minutes. Defaults to `180` if not specified.
+
+> A bug currently exists in Bamboo which prevents adjusting the default value of the command timeout option at
+> creation time. This might result in an unexpected state diff when using this option.
+
 * `quit_period` - (Optional) Enable quiet period. Defaults to `false` if not specified.
 * `quiet_period_wait_time` - (Optional) Quiet period in seconds. Defaults to `10` if not specified.
 * `quiet_period_max_retries` - (Optional) Maximum retries. Defaults to `5` if not specified.

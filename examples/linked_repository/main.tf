@@ -21,6 +21,8 @@ resource "bamboo_linked_repository" "git" {
   username = "john.doe"
   password = "sUp3rS3crEt!"
 
+  remote_agent_cache = false
+
   submodules = true
   lfs = true
 }
