@@ -21,6 +21,7 @@ terraform-provider-bamboo
 crash.log
 *.tfstate
 *.tfstate.backup
+*.lock.info
 
 # Test binaries
 *.test
